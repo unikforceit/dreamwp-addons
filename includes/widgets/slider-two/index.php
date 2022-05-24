@@ -5,17 +5,17 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-class  dreamwp_slider1 extends Widget_Base
+class  dreamwp_slider2 extends Widget_Base
 {
 
     public function get_name()
     {
-        return 'dreamwp_slider1';
+        return 'dreamwp_slider2';
     }
 
     public function get_title()
     {
-        return __('Slider One', 'dreamwp');
+        return __('Slider Two', 'dreamwp');
     }
 
     public function get_icon()
@@ -52,7 +52,23 @@ class  dreamwp_slider1 extends Widget_Base
             [
                 'label' => __('Button Text', 'dreamwp'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => __('Get your free email marketing plan', 'dreamwp'),
+                'default' => __('CHJS', 'dreamwp'),
+            ]
+        );
+        $repeater->add_control(
+            'text',
+            [
+                'label' => __('Text', 'dreamwp'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'default' => __('Increase in Subscriber Rate', 'dreamwp'),
+            ]
+        );
+        $repeater->add_control(
+            'per',
+            [
+                'label' => __('Percentage', 'dreamwp'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'default' => __('25%', 'dreamwp'),
             ]
         );
         $repeater->add_control(
@@ -85,17 +101,18 @@ class  dreamwp_slider1 extends Widget_Base
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'btn' => __('Get your free email marketing plan', 'dreamwp'),
+                        'text' => __('Increase in Subscriber Rate', 'dreamwp'),
                     ],
                     [
-                        'btn' => __('Get your free email marketing plan', 'dreamwp'),
+                        'text' => __('Increase in Subscriber Rate', 'dreamwp'),
                     ],
                     [
-                        'btn' => __('Get your free email marketing plan', 'dreamwp'),
+                        'text' => __('Increase in Subscriber Rate', 'dreamwp'),
                     ],
                     [
-                        'btn' => __('Get your free email marketing plan', 'dreamwp'),
+                        'text' => __('Increase in Subscriber Rate', 'dreamwp'),
                     ],
+
 
                 ],
             ]
@@ -162,33 +179,39 @@ class  dreamwp_slider1 extends Widget_Base
     {
         $settings = $this->get_settings();
         $options = [
-            'item' => $settings['item'],
+                'item' => $settings['item'],
         ];
         ?>
         <div class="projectSlider-area" data-dreamwp='<?php echo wp_json_encode($options);?>'>
+            <div class="container">
                 <div class="projectSliider-wrap">
-                    <div class="projectSwiper-container">
+                    <div class="bannerSwiper-container">
                         <div class="swiper-wrapper">
-                            <?php
-                            if ($settings['sliders']){
+                        <?php
+                        if ($settings['sliders']){
                             foreach ($settings['sliders'] as $slider){
                                 ?>
                             <div class="swiper-slide">
-                                <div class="projectSlider-content">
-                                    <a <?php echo dreamwp_get_that_link($slider['link']);?>>
+                                <div class="bannerSlider-content">
+                                    <div class="sliderImg">
                                         <?php echo dreamwp_get_that_image($slider['image']);?>
-                                    </a>
+                                    </div>
                                     <a <?php echo dreamwp_get_that_link($slider['link']);?> class="get-btn"><?php echo esc_html($slider['btn'])?></a>
+                                    <div class="sliderPercent">
+                                        <span><?php echo esc_html($slider['per'])?></span>
+                                        <p><?php echo esc_html($slider['text'])?></p>
+                                    </div>
                                 </div>
                             </div>
-                          <?php }
-                            }
-                            ?>
+                            <?php }
+                        }
+                        ?>
                         </div>
                     </div>
                     <!-- If we need navigation buttons -->
                     <div class="swiper-button-prev swiper-button-white"></div>
                     <div class="swiper-button-next swiper-button-white"></div>
+                </div>
             </div>
         </div>
         <?php
@@ -196,4 +219,4 @@ class  dreamwp_slider1 extends Widget_Base
     }
 }
 
-Plugin::instance()->widgets_manager->register(new dreamwp_slider1());
+Plugin::instance()->widgets_manager->register(new dreamwp_slider2());
