@@ -28,7 +28,7 @@ class  dreamwp_slider2 extends Widget_Base
         return ['dreamwp-addons'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
 
         $this->start_controls_section(
