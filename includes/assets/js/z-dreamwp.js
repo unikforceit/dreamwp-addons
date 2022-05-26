@@ -21,7 +21,7 @@
                 autoplay: {
                     delay: 3000,
                 },
-                slidesPerView: 2, // or 'auto'
+                slidesPerView: settings['item'], // or 'auto'
                 // spaceBetween: 10,
                 centeredSlides: true,
                 effect: "coverflow", // 'cube', 'fade', 'coverflow',
@@ -53,7 +53,7 @@
                 autoplay: {
                     delay: 3000,
                 },
-                slidesPerView: 2, // or 'auto'
+                slidesPerView: settings['item'], // or 'auto'
                 // spaceBetween: 10,
                 centeredSlides: true,
                 effect: "coverflow", // 'cube', 'fade', 'coverflow',
@@ -78,14 +78,13 @@
     var SliderThree = function ($scope, $) {
         $scope.find('.brandSlider-area').each(function () {
             var settings = $(this).find('.brandSlider-wrap').data('dreamwp');
-            var settings2 = $(this).find('.brandSlider-wrap2').data('dreamwp2');
             // Js Start
             var sliderSelector3 = new Swiper(".brandSlider-wrap", {
-                slidesPerView: 5,
+                slidesPerView: settings['item'],
                 // spaceBetween: 50,
                 loop: true,
                 autoplay: {
-                    delay: 1,
+                    delay: 0,
                     disableOnInteraction: false,
                 },
                 speed: 2000,
@@ -93,6 +92,15 @@
                 mousewheelControl: true,
                 keyboardControl: true,
             });
+            // Js End
+        });
+    };
+
+    var SliderFour = function ($scope, $) {
+        $scope.find('.brandSlider-area').each(function () {
+            var settings2 = $(this).find('.brandSlider-wrap2').data('dreamwp2');
+            // Js Start
+
             var sliderSelector4 = new Swiper(".brandSlider-wrap2", {
                 slidesPerView: 5,
                 // spaceBetween: 50,
@@ -117,11 +125,13 @@
             elementorFrontend.hooks.addAction('frontend/element_ready/dreamwp_slider1.default', SliderOne);
             elementorFrontend.hooks.addAction('frontend/element_ready/dreamwp_slider2.default', SliderTwo);
             elementorFrontend.hooks.addAction('frontend/element_ready/dreamwp_slider3.default', SliderThree);
+            elementorFrontend.hooks.addAction('frontend/element_ready/dreamwp_slider3.default', SliderFour);
         } else {
             elementorFrontend.hooks.addAction('frontend/element_ready/global', DreamwpGlobal);
             elementorFrontend.hooks.addAction('frontend/element_ready/dreamwp_slider1.default', SliderOne);
             elementorFrontend.hooks.addAction('frontend/element_ready/dreamwp_slider2.default', SliderTwo);
             elementorFrontend.hooks.addAction('frontend/element_ready/dreamwp_slider3.default', SliderThree);
+            elementorFrontend.hooks.addAction('frontend/element_ready/dreamwp_slider3.default', SliderFour);
         }
     });
     console.log('addon js loaded');
