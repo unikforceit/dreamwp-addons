@@ -1,4 +1,3 @@
-
 .projectSliider-wrap {
   position: relative;
   width: 60%;
@@ -82,6 +81,7 @@
   border-radius: 60px;
   position: relative;
   z-index: 1;
+  box-shadow: 0 10px 30px #00000010;
 }
 .projectSwiper-container .bannerSlider-content .sliderImg img,
 .bannerSwiper-container .bannerSlider-content .sliderImg img,
@@ -209,6 +209,14 @@
 
 .brandSlider-wrap2 {
   margin-top: 80px;
+}
+
+.brandSlider-wrap >.swiper-wrapper{
+  transition-timing-function: linear;
+}
+
+.brandSlider-wrap2 >.swiper-wrapper{
+  transition-timing-function: linear;
 }
 
 .brand-item {
