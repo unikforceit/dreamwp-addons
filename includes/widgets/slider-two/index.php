@@ -74,7 +74,7 @@ class  dreamwp_slider2 extends Widget_Base
         $repeater->add_control(
             'image',
             [
-                'label' => __( 'Image', 'moda' ),
+                'label' => __('Image', 'moda'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -129,10 +129,42 @@ class  dreamwp_slider2 extends Widget_Base
         $this->add_control(
             'post_titlea_color',
             [
-                'label' => __('Title Color', 'dreamwp'),
+                'label' => __('Image Background', 'dreamwp'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .page__left-sidebar .jump_title' => 'color: {{VALUE}}; border-color: {{VALUE}}',
+                    '{{WRAPPER}} .sliderImg' => 'background: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'img_radius',
+            [
+                'label' => esc_html__('Image Radius', 'softim-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .sliderImg' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'btn_bg_backgroun',
+            [
+                'label' => __('Button Background', 'dreamwp'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .get-btn' => 'background: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'btn_radius',
+            [
+                'label' => esc_html__('Button Radius', 'softim-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .get-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -140,35 +172,65 @@ class  dreamwp_slider2 extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'ttih',
-                'label' => __('Title Typography', 'dreamwp'),
-                'selector' => '{{WRAPPER}} .page__left-sidebar .jump_title',
+                'label' => __('Button Typography', 'dreamwp'),
+                'selector' => '{{WRAPPER}} .get-btn',
             ]
         );
         $this->add_control(
-            'post_titlea_colodfr',
+            'btn_bg',
             [
-                'label' => __('Item Color', 'dreamwp'),
+                'label' => __('Slider Content Background', 'dreamwp'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .page__left-sidebar .toc__items .toc__item a' => 'color: {{VALUE}}; border-color: {{VALUE}}',
+                    '{{WRAPPER}} .sliderPercent' => 'background: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'content_radius',
+            [
+                'label' => esc_html__('Slider Content Radius', 'softim-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .sliderPercent' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'percent_text_color',
+            [
+                'label' => __('Slider Percent Color', 'dreamwp'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .sliderPercent span' => 'color: {{VALUE}};',
                 ],
             ]
         );
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'ttsdfih',
-                'label' => __('Item Typography', 'dreamwp'),
-                'selector' => '{{WRAPPER}} .page__left-sidebar .toc__items .toc__item a',
+                'name' => 'ttih1',
+                'label' => __('Slider Percent Typography', 'dreamwp'),
+                'selector' => '{{WRAPPER}} .sliderPercent span',
+            ]
+        );
+        $this->add_control(
+            'percent_text_color1',
+            [
+                'label' => __('Slider Text Color', 'dreamwp'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .sliderPercent p' => 'color: {{VALUE}};',
+                ],
             ]
         );
         $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
+            \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'backgrouncfbxd',
-                'label' => esc_html__('Background', 'dreamwp'),
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .page__left-sidebar',
+                'name' => 'ttih2',
+                'label' => __('Slider Text Typography', 'dreamwp'),
+                'selector' => '{{WRAPPER}} .sliderPercent p',
             ]
         );
         $this->end_controls_section();
@@ -179,33 +241,34 @@ class  dreamwp_slider2 extends Widget_Base
     {
         $settings = $this->get_settings();
         $options = [
-                'item' => $settings['item'],
+            'item' => $settings['item'],
         ];
         ?>
-        <div class="projectSlider-area" data-dreamwp='<?php echo wp_json_encode($options);?>'>
+        <div class="projectSlider-area" data-dreamwp='<?php echo wp_json_encode($options); ?>'>
             <div class="container">
                 <div class="projectSliider-wrap">
                     <div class="bannerSwiper-container">
                         <div class="swiper-wrapper">
-                        <?php
-                        if ($settings['sliders']){
-                            foreach ($settings['sliders'] as $slider){
-                                ?>
-                            <div class="swiper-slide">
-                                <div class="bannerSlider-content">
-                                    <div class="sliderImg">
-                                        <?php echo dreamwp_get_that_image($slider['image']);?>
+                            <?php
+                            if ($settings['sliders']) {
+                                foreach ($settings['sliders'] as $slider) {
+                                    ?>
+                                    <div class="swiper-slide">
+                                        <div class="bannerSlider-content">
+                                            <div class="sliderImg">
+                                                <?php echo dreamwp_get_that_image($slider['image']); ?>
+                                            </div>
+                                            <a <?php echo dreamwp_get_that_link($slider['link']); ?>
+                                                    class="get-btn"><?php echo esc_html($slider['btn']) ?></a>
+                                            <div class="sliderPercent">
+                                                <span><?php echo esc_html($slider['per']) ?></span>
+                                                <p><?php echo esc_html($slider['text']) ?></p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <a <?php echo dreamwp_get_that_link($slider['link']);?> class="get-btn"><?php echo esc_html($slider['btn'])?></a>
-                                    <div class="sliderPercent">
-                                        <span><?php echo esc_html($slider['per'])?></span>
-                                        <p><?php echo esc_html($slider['text'])?></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php }
-                        }
-                        ?>
+                                <?php }
+                            }
+                            ?>
                         </div>
                     </div>
                     <!-- If we need navigation buttons -->

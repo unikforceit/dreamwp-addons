@@ -110,12 +110,12 @@ class  dreamwp_slider1 extends Widget_Base
             ]
         );
         $this->add_control(
-            'post_titlea_color',
+            'brand_bg_color_1',
             [
-                'label' => __('Title Color', 'dreamwp'),
+                'label' => __('Button Background Color', 'dreamwp'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .page__left-sidebar .jump_title' => 'color: {{VALUE}}; border-color: {{VALUE}}',
+                    '{{WRAPPER}} .get-btn' => 'background: {{VALUE}};',
                 ],
             ]
         );
@@ -123,35 +123,29 @@ class  dreamwp_slider1 extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'ttih',
-                'label' => __('Title Typography', 'dreamwp'),
-                'selector' => '{{WRAPPER}} .page__left-sidebar .jump_title',
+                'label' => __('Button Typography', 'dreamwp'),
+                'selector' => '{{WRAPPER}} .get-btn',
             ]
         );
         $this->add_control(
             'post_titlea_colodfr',
             [
-                'label' => __('Item Color', 'dreamwp'),
+                'label' => __('Button Text Color', 'dreamwp'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .page__left-sidebar .toc__items .toc__item a' => 'color: {{VALUE}}; border-color: {{VALUE}}',
+                    '{{WRAPPER}} .get-btn' => 'color: {{VALUE}}; border-color: {{VALUE}}',
                 ],
             ]
         );
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+        $this->add_control(
+            'btn_radius',
             [
-                'name' => 'ttsdfih',
-                'label' => __('Item Typography', 'dreamwp'),
-                'selector' => '{{WRAPPER}} .page__left-sidebar .toc__items .toc__item a',
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'backgrouncfbxd',
-                'label' => esc_html__('Background', 'dreamwp'),
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .page__left-sidebar',
+                'label' => esc_html__('Button Radius', 'softim-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .get-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
         $this->end_controls_section();
@@ -167,7 +161,7 @@ class  dreamwp_slider1 extends Widget_Base
         ?>
         <div class="projectSlider-area" data-dreamwp='<?php echo wp_json_encode($options);?>'>
                 <div class="projectSliider-wrap">
-                    <div class="projectSwiper-container">
+                    <div class="projectSwiper-container projectSlider_One">
                         <div class="swiper-wrapper">
                             <?php
                             if ($settings['sliders']){
@@ -175,7 +169,7 @@ class  dreamwp_slider1 extends Widget_Base
                                 ?>
                             <div class="swiper-slide">
                                 <div class="projectSlider-content">
-                                    <a <?php echo dreamwp_get_that_link($slider['link']);?>>
+                                    <a <?php echo dreamwp_get_that_link($slider['link']);?> >
                                         <?php echo dreamwp_get_that_image($slider['image']);?>
                                     </a>
                                     <a <?php echo dreamwp_get_that_link($slider['link']);?> class="get-btn"><?php echo esc_html($slider['btn'])?></a>

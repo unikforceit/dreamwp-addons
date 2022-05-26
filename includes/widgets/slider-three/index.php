@@ -151,48 +151,54 @@ class  dreamwp_slider3 extends Widget_Base
             ]
         );
         $this->add_control(
-            'post_titlea_color',
+            'brand_bg_color_1',
             [
-                'label' => __('Title Color', 'dreamwp'),
+                'label' => __('Background Color 1', 'dreamwp'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .page__left-sidebar .jump_title' => 'color: {{VALUE}}; border-color: {{VALUE}}',
+                    '{{WRAPPER}} .brandSlider-wrap .brand-item' => 'background: {{VALUE}};',
                 ],
             ]
         );
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'ttih',
-                'label' => __('Title Typography', 'dreamwp'),
-                'selector' => '{{WRAPPER}} .page__left-sidebar .jump_title',
-            ]
-        );
+
+        $this->add_control('divider_01', [
+            'type' => Controls_Manager::DIVIDER
+        ]);
         $this->add_control(
-            'post_titlea_colodfr',
+            'brand_1_border_radius',
             [
-                'label' => __('Item Color', 'dreamwp'),
-                'type' => \Elementor\Controls_Manager::COLOR,
+                'label' => esc_html__('Border Radius 1', 'softim-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .page__left-sidebar .toc__items .toc__item a' => 'color: {{VALUE}}; border-color: {{VALUE}}',
+                    '{{WRAPPER}} .brandSlider-wrap .brand-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+
+        $this->add_control(
+            'brand_bg_color_2',
             [
-                'name' => 'ttsdfih',
-                'label' => __('Item Typography', 'dreamwp'),
-                'selector' => '{{WRAPPER}} .page__left-sidebar .toc__items .toc__item a',
+                'label' => __('Background Color 2', 'dreamwp'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .brandSlider-wrap2 .brand-item' => 'background: {{VALUE}};',
+                ],
             ]
         );
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
+
+        $this->add_control('divider_02', [
+            'type' => Controls_Manager::DIVIDER
+        ]);
+        $this->add_control(
+            'brand_2_border_radius',
             [
-                'name' => 'backgrouncfbxd',
-                'label' => esc_html__('Background', 'dreamwp'),
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .page__left-sidebar',
+                'label' => esc_html__('Border Radius 2', 'softim-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .brandSlider-wrap2 .brand-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
         $this->end_controls_section();
